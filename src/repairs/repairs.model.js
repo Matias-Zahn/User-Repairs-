@@ -1,6 +1,5 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/database/database");
-const Users = require("../users/users.model");
 
 const Repairs = sequelize.define("repairs", {
   id: {
@@ -21,14 +20,8 @@ const Repairs = sequelize.define("repairs", {
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: Users,
-      key: "id",
-    },
   },
 });
 
-Repairs.belongsTo(Users, { foreignKey: "userId" });
-Users.hasMany(Repairs, { foreignKey: "userId" });
 
 module.exports = Repairs;
